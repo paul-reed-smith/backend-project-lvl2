@@ -5,8 +5,21 @@
   "bin": {
     "gendiff": "dist/bin/gendiff.js"
   },
+  "author": "Paul-Reed-Smith",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paul-reed-smith/backend-project-lvl2/issues"
+  },
+  "homepage": "https://github.com/paul-reed-smith/backend-project-lvl2#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paul-reed-smith/backend-project-lvl2.git"
+  },
+  "dependencies": {
+    "commander": "^3.0.1"
+  },
   "scripts": {
-    "test": "test",
+    "test": "jest",
     "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
     "prepublishOnly": "npm run build",
     "eslint": "eslint"
@@ -17,28 +30,18 @@
     "@babel/node": "^7.6.1",
     "@babel/preset-env": "^7.6.0",
     "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
     "eslint": "^6.3.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-babel": "^5.3.0",
-    "eslint-plugin-import": "^2.18.2"
+    "eslint-plugin-import": "^2.18.2",
+    "jest": "^24.0.0",
+    "jest-cli": "^24.0.0"
   },
   "jest": {
     "testEnvironment": "node"
   },
   "files": [
     "dist"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/paul-reed-smith/backend-project-lvl2.git"
-  },
-  "author": "Paul-Reed-Smith",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/paul-reed-smith/backend-project-lvl2/issues"
-  },
-  "homepage": "https://github.com/paul-reed-smith/backend-project-lvl2#readme",
-  "dependencies": {
-    "commander": "^3.0.1"
-  }
+  ]
 }
