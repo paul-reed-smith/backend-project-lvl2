@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable */   
 import fs from 'fs';
 
 export default (dataPath1, dataPath2) => {
