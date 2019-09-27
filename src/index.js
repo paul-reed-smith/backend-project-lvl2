@@ -1,12 +1,6 @@
 import fs from 'fs';
 
-const genDiff = (dataPath1, dataPath2) => {
-  const dataRead1 = fs.readFileSync(dataPath1);
-  const dataRead2 = fs.readFileSync(dataPath2);
-
-  const data1 = JSON.parse(dataRead1);
-  const data2 = JSON.parse(dataRead2);
-
+const diff = (data1, data2) => {
   const keys1 = Object.keys(data1);
   const keys2 = Object.keys(data2);
 
@@ -36,4 +30,12 @@ const genDiff = (dataPath1, dataPath2) => {
 ${res.join('')}}`;
 };
 
+const genDiff = (dataPath1, dataPath2) => {
+  const dataRead1 = fs.readFileSync(dataPath1);
+  const dataRead2 = fs.readFileSync(dataPath2);
+
+  const data1 = JSON.parse(dataRead1);
+  const data2 = JSON.parse(dataRead2);
+  return diff(data1, data2);
+};
 export default genDiff;
