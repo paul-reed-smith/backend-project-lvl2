@@ -30,7 +30,7 @@ const diff = (data1, data2) => {
 ${res.join('')}}`;
 };
 
-const genDiff = (dataPath1, dataPath2) => {
+export default (dataPath1, dataPath2) => {
   const dataRead1 = fs.readFileSync(dataPath1);
   const dataRead2 = fs.readFileSync(dataPath2);
 
@@ -38,4 +38,3 @@ const genDiff = (dataPath1, dataPath2) => {
   const data2 = JSON.parse(dataRead2);
   return diff(data1, data2);
 };
-export default genDiff;
