@@ -1,4 +1,5 @@
 import fs from 'fs';
+import parse from './parsers';
 
 const diff = (data1, data2) => {
   const keys1 = Object.keys(data1);
@@ -31,10 +32,10 @@ ${res.join('')}}`;
 };
 
 export default (dataPath1, dataPath2) => {
-  const dataRead1 = fs.readFileSync(dataPath1);
-  const dataRead2 = fs.readFileSync(dataPath2);
+  const readedData1 = fs.readFileSync(dataPath1);
+  const readedData2 = fs.readFileSync(dataPath2);
 
-  const data1 = JSON.parse(dataRead1);
-  const data2 = JSON.parse(dataRead2);
+  const data1 = parse(dataPath1, readedData1);
+  const data2 = parse(dataPath2, readedData2);
   return diff(data1, data2);
 };
