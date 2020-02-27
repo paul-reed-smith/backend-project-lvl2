@@ -1,35 +1,7 @@
 import fs from 'fs';
 import parse from './parsers';
 
-const diff = (data1, data2) => {
-  const keys1 = Object.keys(data1);
-  const keys2 = Object.keys(data2);
-
-  const allKeys = Object.keys({ ...data1, ...data2 });
-
-  const added = keys2.filter((el) => !keys1.includes(el));
-  const deleted = keys1.filter((el) => !keys2.includes(el));
-
-  const kyesWithModifedValues = allKeys
-    .filter((v) => !added.includes(v) && !deleted.includes(v))
-    .filter((el) => data1[el] !== data2[el]);
-
-  const res = allKeys.reduce((acc, key) => {
-    if (added.includes(key)) {
-      acc.push(`  + ${key}: ${data2[key]}\n`);
-    } else if (deleted.includes(key)) {
-      acc.push(`  - ${key}: ${data1[key]}\n`);
-    } else if (kyesWithModifedValues.includes(key)) {
-      acc.push(`  + ${key}: ${data2[key]}\n  - ${key}: ${data1[key]}\n`);
-    } else {
-      acc.push(`    ${key}: ${data2[key]}\n`);
-    }
-    return acc;
-  }, []);
-
-  return `{
-${res.join('')}}`;
-};
+const diff = () => {/* ast bulder and render*/};
 
 export default (dataPath1, dataPath2) => {
   const readedData1 = fs.readFileSync(dataPath1);

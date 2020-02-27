@@ -8,7 +8,7 @@ const types = {
   '.yaml': (data) => yaml.safeLoad(data),
 };
 
-export default (pathOfData, data) => {
-  const ext = path.extname(pathOfData);
+export default (dataPath, data) => {
+  const ext = path.extname(dataPath);
   return types[ext](data);
 };
