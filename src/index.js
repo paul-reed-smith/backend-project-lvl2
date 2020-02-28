@@ -14,6 +14,10 @@ const buildNode = (data1, data2, key, f) => {
       build: () => ({ type: 'deleted', key, value: data1[key] }),
     },
     {
+      check: () => _.isObject(data1[key]) && _.isObject(data2[key]),
+      build: () => ({ type: 'nested', key, children: f(data1[key], data2[key]) }),
+    },
+    {
       check: () => data1[key] !== data2[key],
       build: () => (
         {
@@ -23,10 +27,6 @@ const buildNode = (data1, data2, key, f) => {
     {
       check: () => data1[key] === data2[key],
       build: () => ({ type: 'unchanged', key, value2: data2[key] }),
-    },
-    {
-      check: () => _.isObject(data1[key]) && _.isObject(data2[key]),
-      build: () => ({ type: 'nested', key, children: f(data1[key], data2[key]) }),
     },
   ];
   const checkedNode = actions.find(({ check }) => check());
