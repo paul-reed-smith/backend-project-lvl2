@@ -1,13 +1,20 @@
 import fs from 'fs';
 import gendiff from '../src';
 
-describe('Test', () => {
-  test('gendiff', () => {
-    const before = `${__dirname}/__fixtures__/before.json`;
-    const after = `${__dirname}/__fixtures__/after.json`;
-    const expected = String(fs.readFileSync(`${__dirname}/__fixtures__/expectedJSON.txt`));
-    const generated = gendiff(before, after);
+test.each(['json', 'yml', 'ini'])('Input format: %s ,output is: pretty', (format) => {
+  const first = `${__dirname}/__fixtures__/first.${format}`;
+  const second = `${__dirname}/__fixtures__/second.${format}`;
+  const expected = fs.readFileSync(`${__dirname}/__fixtures__/expectedPretty.txt`);
+  const generated = gendiff(first, second);
 
-    expect(expected).toEqual(generated);
-  });
+  expect(expected).toEqual(generated);
+});
+
+test('plain format', () => {
+  const first = `${__dirname}/__fixtures__/first.json`;
+  const second = `${__dirname}/__fixtures__/second.json`;
+  const expected = fs.readFileSync(`${__dirname}/__fixtures__/expectedPlain.txt`);
+  const generated = gendiff(first, second);
+
+  expect(expected).toEqual(generated);
 });
