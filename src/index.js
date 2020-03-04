@@ -56,5 +56,6 @@ export default (dataPath1, dataPath2) => {
 
   const data1 = parse(dataPath1, readedData1);
   const data2 = parse(dataPath2, readedData2);
+
   return diff(data1, data2);
 };
