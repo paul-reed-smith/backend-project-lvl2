@@ -1,23 +1,24 @@
-import _ from 'lodash';
-
-// + follow: false
-//  setting1: Value 1
-// - setting2: 200
+const douleIndent = '    ';
 
 const renderTypes = {
-  added: ({ key, value }) => (`  + ${key}:${value} /n`),
-  changed: ({ key, value1, value2 }) => (`  + ${key}: ${value2}\n  - ${key}: ${value1}\n`),
-  deleted: ({ key, value }) => (`  - ${key}${value} /n`),
-  unchanged: ({ key, value }) => (`   ${key}:${value}`),
-  nested: ({ children, key}) => `Key: ${key} [ ${render(children)} ] `,
+  nested: ({ key, children }, indent, func) => `${indent}${key}: \n${func(children, indent)}\n`,
+  changed: ({ key, value1, value2 }, indent) => `${indent}+ ${key}: ${value2}\n${indent}- ${key}: ${value1}\n`,
+  deleted: ({ key, value }, indent) => `${indent}- ${key}: ${value}\n`,
+  unchanged: ({ key, value }, indent) => `${indent}  ${key}: ${value}\n`,
+  added: ({ key, value }, indent) => `${indent}+ ${key}: ${value}\n`,
 };
 
-const finder = (el) => {
+const finder = (el, indent, func) => {
   const { type } = el;
 
-  return renderTypes[type](el) || undefined;
+  return renderTypes[type](el, indent, func);
 };
 
-const render = (ast) => ast.map((el) => finder(el));
+const render = (ast, indent = '  ') => {
+  const newIndent = indent + douleIndent;
+  const rendered = ast.map((el) => finder(el, newIndent, render));
+
+  return `${indent}{ \n${rendered.join('')}${indent}}`;
+};
 
 export default render;
