@@ -11,7 +11,7 @@ const valueChecker = (value, nestingLevel) => {
     const mapped = keys.map((el) => `${indentCalc(nestingLevel + 3)}${el}: ${value[el]}`);
     const stringed = mapped.join('\n');
 
-    return `{ \n${stringed}\n${indentCalc(nestingLevel + 1)}}`;
+    return `{\n${stringed}\n${indentCalc(nestingLevel + 1)}}`;
   }
 
 
@@ -42,7 +42,7 @@ const finder = (el, nestingLevel, func) => {
 const render = (ast, nestingLevel) => {
   const rendered = ast.map((el) => finder(el, nestingLevel, render));
 
-  return `{ \n${rendered.join('')}${indentCalc(nestingLevel - 1)}}`;
+  return `{\n${rendered.join('')}${indentCalc(nestingLevel - 1)}}`;
 };
 
 const startingTestingLevel = 1;

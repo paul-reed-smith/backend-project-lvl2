@@ -49,8 +49,8 @@ const diff = (data1, data2) => {
 };
 
 export default (dataPath1, dataPath2, format = 'pretty') => {
-  const readedData1 = fs.readFileSync(dataPath1);
-  const readedData2 = fs.readFileSync(dataPath2);
+  const readedData1 = fs.readFileSync(dataPath1, 'utf-8');
+  const readedData2 = fs.readFileSync(dataPath2, 'utf-8');
 
   const data1 = parse(dataPath1, readedData1);
   const data2 = parse(dataPath2, readedData2);
