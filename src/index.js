@@ -7,11 +7,11 @@ const buildNode = (data1, data2, key, f) => {
   const actions = [
     {
       check: () => !(_.has(data1, key)),
-      build: () => ({ type: 'added', key, value2: data2[key] }),
+      build: () => ({ type: 'added', key, value: data2[key] }),
     },
     {
       check: () => !(_.has(data2, key)),
-      build: () => ({ type: 'deleted', key, value1: data1[key] }),
+      build: () => ({ type: 'deleted', key, value: data1[key] }),
     },
     {
       check: () => _.isObject(data1[key]) && _.isObject(data2[key]),
@@ -26,7 +26,7 @@ const buildNode = (data1, data2, key, f) => {
     },
     {
       check: () => data1[key] === data2[key],
-      build: () => ({ type: 'unchanged', key, value1: data1[key] }),
+      build: () => ({ type: 'unchanged', key, value: data1[key] }),
     },
   ];
   const checkedNode = actions.find(({ check }) => check());
@@ -44,7 +44,8 @@ const buildAST = (data1, data2) => {
 
 const diff = (data1, data2) => {
   const ast = buildAST(data1, data2);
-  const rendered = render(ast);
+  const format = render('pretty');
+  const rendered = format(ast);
 
   return rendered;
 };
