@@ -1,24 +1,25 @@
-const doubleIndent = '    ';
+import _ from 'lodash';
 
-const renderTypes = {
-  nested: ({ key, children }, indent, func) => `${indent}${key}: \n${func(children, indent)}\n`,
-  changed: ({ key, value1, value2 }, indent) => `${indent}+ ${key}: ${value2}\n${indent}- ${key}: ${value1}\n`,
-  deleted: ({ key, value }, indent) => `${indent}- ${key}: ${value}\n`,
-  unchanged: ({ key, value }, indent) => `${indent}  ${key}: ${value}\n`,
-  added: ({ key, value }, indent) => `${indent}+ ${key}: ${value}\n`,
+const format = (value) => {
+  if (_.isObject(value)) return "'[complex value]'";
+  if (_.isString(value)) return `'${value}'`;
+  return value;
 };
 
-const finder = (el, indent, func) => {
-  const { type } = el;
-
-  return renderTypes[type](el, indent, func);
+const actions = {
+  added: ({ key, value }, path) => `Property '${path}${key}' was added with value: ${format(value)}`,
+  deleted: ({ key }, path) => `Property '${path}${key}' was deleted`,
+  changed: ({ key, value1, value2 }, path) => `Property '${path}${key}' was changed from ${format(value1)} to ${format(value2)}`,
+  nested: ({ key, children }, path, f) => f(children, `${path}${key}.`),
+  unchanged: () => [],
 };
 
-const render = (ast, indent = '  ') => {
-  const newIndent = indent + doubleIndent;
-  const rendered = ast.map((el) => finder(el, newIndent, render));
-
-  return `${indent}{ \n${rendered.join('')}${indent}}`;
-};
+const render = (ast, path = '') => _.flattenDeep(
+  ast.map((el) => {
+    const { type } = el;
+    const finded = actions[type];
+    return finded(el, path, render);
+  }),
+).join('\n');
 
 export default render;
