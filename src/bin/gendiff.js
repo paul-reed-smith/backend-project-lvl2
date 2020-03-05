@@ -8,7 +8,8 @@ program
   .description('Calculates differences between two files')
   .arguments('<<firstConfig> <secondConfig>')
   .option('-V, --version        output the version number')
-  .option('-h, --help           output usage information')
   .option('-f, --format [type]  Output format')
-  .action((firstConfig, secondConfig) => console.log(func(firstConfig, secondConfig)))
+  .action((firstConfig, secondConfig) => {
+    console.log(func(firstConfig, secondConfig, program.format));
+  })
   .parse(process.argv);
