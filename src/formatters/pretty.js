@@ -18,11 +18,23 @@ const valueChecker = (value, nestingLevel) => {
   return value;
 };
 
+const stringify = (nestingLevel, sign, key, value) => {
+  const indent = indentCalc(nestingLevel);
+  const checkedValue = valueChecker(value, nestingLevel);
+
+  return `${indent}${sign} ${key}: ${checkedValue}\n`;
+};
+
 const renderTypes = {
-  added: ({ key, value }, nestingLevel) => `${indentCalc(nestingLevel)}+ ${key}: ${valueChecker(value, nestingLevel)}\n`,
-  changed: ({ key, value1, value2 }, nestingLevel) => `${indentCalc(nestingLevel)}+ ${key}: ${valueChecker(value2, nestingLevel)}\n${indentCalc(nestingLevel)}- ${key}: ${valueChecker(value1, nestingLevel)}\n`,
-  deleted: ({ key, value }, nestingLevel) => `${indentCalc(nestingLevel)}- ${key}: ${valueChecker(value, nestingLevel)}\n`,
-  unchanged: ({ key, value }, nestingLevel) => `${indentCalc(nestingLevel)}  ${key}: ${valueChecker(value, nestingLevel)}\n`,
+  added: ({ key, value }, nestingLevel) => stringify(nestingLevel, '+', key, value),
+  changed: ({ key, value1, value2 }, nestingLevel) => {
+    const added = stringify(nestingLevel, '+', key, value2);
+    const deleted = stringify(nestingLevel, '-', key, value1);
+
+    return `${added}${deleted}`;
+  },
+  deleted: ({ key, value }, nestingLevel) => stringify(nestingLevel, '-', key, value),
+  unchanged: ({ key, value }, nestingLevel) => stringify(nestingLevel, ' ', key, value),
   nested: ({ key, children }, nestingLevel, func) => `${indentCalc(nestingLevel)}${key}: ${func(children, nestingLevel)}\n`,
 
 };
