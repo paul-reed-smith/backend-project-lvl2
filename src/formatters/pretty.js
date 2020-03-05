@@ -5,7 +5,8 @@ const indentCalc = (nestingLevel) => '  '.repeat(nestingLevel);
 const valueChecker = (value, nestingLevel) => {
   if (_.isObject(value)) {
     const keys = Object.keys(value);
-    const mapped = keys.map((el) => `${indentCalc(nestingLevel + 3)}${el}: ${value[el]}`);
+    const newNestingLevel = nestingLevel + 3;
+    const mapped = keys.map((el) => `${indentCalc(newNestingLevel)}${el}: ${value[el]}`);
     const stringed = mapped.join('\n');
 
     return `{\n${stringed}\n${indentCalc(nestingLevel + 1)}}`;
