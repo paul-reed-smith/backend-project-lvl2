@@ -30,3 +30,4 @@ This will install package globaly
 
 [![asciicast](https://asciinema.org/a/dqg0YGHjyCwMl6l4evL9sFUtX.svg)](https://asciinema.org/a/dqg0YGHjyCwMl6l4evL9sFUtX)
 
+[![asciicast](https://asciinema.org/a/QRYqq8zBOZvgwKbdmJw81eRKZ.svg)](https://asciinema.org/a/QRYqq8zBOZvgwKbdmJw81eRKZ)
