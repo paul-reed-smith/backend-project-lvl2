@@ -1,9 +1,6 @@
 import _ from 'lodash';
 
-const indentCalc = (nestingLevel) => {
-  const res = '  '.repeat(nestingLevel);
-  return res;
-};
+const indentCalc = (nestingLevel) => '  '.repeat(nestingLevel);
 
 const valueChecker = (value, nestingLevel) => {
   if (_.isObject(value)) {
