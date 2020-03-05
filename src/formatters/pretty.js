@@ -54,6 +54,6 @@ const render = (ast, nestingLevel) => {
   return `{\n${rendered.join('')}${indentCalc(nestingLevel - 1)}}`;
 };
 
-const startingTestingLevel = 1;
+const startingNestingLevel = 1;
 
-export default (ast) => render(ast, startingTestingLevel);
+export default (ast) => render(ast, startingNestingLevel);
