@@ -6,7 +6,6 @@
 
 This utility shows the difference between two configuration files. 
 Supported file formats: ini, yaml and json.
-The plain, pretty and json output formats are supported.
 The output can be in the following formats: plain, pretty and json
 
 #### Instalation
@@ -19,4 +18,15 @@ This will install package globaly
 
 #### Usage 
 
-```gendiff <firstfile> <secondfile> --format <format (pretty for default)>```
+```gendiff <first file> <second file> --format <format> (pretty for default)```
+
+[![asciicast](https://asciinema.org/a/myNHEX9spFdvG6s5FkVy52BI2.svg)](https://asciinema.org/a/myNHEX9spFdvG6s5FkVy52BI2)
+
+[![asciicast](https://asciinema.org/a/L7y4tWJAcabi2G3xmUGgBwh3g.svg)](https://asciinema.org/a/L7y4tWJAcabi2G3xmUGgBwh3g)
+
+[![asciicast](https://asciinema.org/a/Qcf8hYiDsvtIbwU5F0FQiFRwG.svg)](https://asciinema.org/a/Qcf8hYiDsvtIbwU5F0FQiFRwG)
+
+[![asciicast](https://asciinema.org/a/M3XIv99G2Np4sISrDSNEIE0vu.svg)](https://asciinema.org/a/M3XIv99G2Np4sISrDSNEIE0vu)
+
+[![asciicast](https://asciinema.org/a/dqg0YGHjyCwMl6l4evL9sFUtX.svg)](https://asciinema.org/a/dqg0YGHjyCwMl6l4evL9sFUtX)
+
