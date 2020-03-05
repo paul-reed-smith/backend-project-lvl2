@@ -3,35 +3,36 @@ import _ from 'lodash';
 import parse from './parsers';
 import getRender from './formatters';
 
-const buildNode = (data1, data2, key, f) => {
-  const actions = [
-    {
-      check: () => !(_.has(data1, key)),
-      build: () => ({ type: 'added', key, value: data2[key] }),
-    },
-    {
-      check: () => !(_.has(data2, key)),
-      build: () => ({ type: 'deleted', key, value: data1[key] }),
-    },
-    {
-      check: () => _.isObject(data1[key]) && _.isObject(data2[key]),
-      build: () => ({ type: 'nested', key, children: f(data1[key], data2[key]) }),
-    },
-    {
-      check: () => data1[key] !== data2[key],
-      build: () => (
-        {
-          type: 'changed', key, value1: data1[key], value2: data2[key],
-        }),
-    },
-    {
-      check: () => data1[key] === data2[key],
-      build: () => ({ type: 'unchanged', key, value: data1[key] }),
-    },
-  ];
-  const checkedNode = actions.find(({ check }) => check());
+const actions = [
+  {
+    check: (data1, data2, key) => !(_.has(data1, key)),
+    build: (data1, data2, key) => ({ type: 'added', key, value: data2[key] }),
+  },
+  {
+    check: (data1, data2, key) => !(_.has(data2, key)),
+    build: (data1, data2, key) => ({ type: 'deleted', key, value: data1[key] }),
+  },
+  {
+    check: (data1, data2, key) => _.isObject(data1[key]) && _.isObject(data2[key]),
+    build: (data1, data2, key, f) => ({ type: 'nested', key, children: f(data1[key], data2[key]) }),
+  },
+  {
+    check: (data1, data2, key) => data1[key] !== data2[key],
+    build: (data1, data2, key) => (
+      {
+        type: 'changed', key, value1: data1[key], value2: data2[key],
+      }),
+  },
+  {
+    check: (data1, data2, key) => data1[key] === data2[key],
+    build: (data1, data2, key) => ({ type: 'unchanged', key, value: data1[key] }),
+  },
+];
 
-  return checkedNode.build();
+const buildNode = (data1, data2, key, f) => {
+  const checkedNode = actions.find(({ check }) => check(data1, data2, key));
+
+  return checkedNode.build(data1, data2, key, f);
 };
 
 const buildAST = (data1, data2) => {
