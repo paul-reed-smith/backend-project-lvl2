@@ -1,5 +1,6 @@
 import fs from 'fs';
 import _ from 'lodash';
+import path from 'path';
 import parse from './parsers';
 import getRender from './formatters';
 
@@ -43,20 +44,17 @@ const buildAST = (data1, data2) => {
   return unKeys.map((key) => buildNode(data1, data2, key, buildAST));
 };
 
-const diff = (data1, data2) => {
-  const ast = buildAST(data1, data2);
-
-  return ast;
-};
-
 export default (dataPath1, dataPath2, format = 'pretty') => {
   const readedData1 = fs.readFileSync(dataPath1, 'utf-8');
   const readedData2 = fs.readFileSync(dataPath2, 'utf-8');
 
-  const data1 = parse(dataPath1, readedData1);
-  const data2 = parse(dataPath2, readedData2);
+  const format1 = path.extname(dataPath1).substr(1);
+  const format2 = path.extname(dataPath2).substr(1);
 
-  const ast = diff(data1, data2);
+  const data1 = parse(readedData1, format1);
+  const data2 = parse(readedData2, format2);
+
+  const ast = buildAST(data1, data2);
   const render = getRender(format);
 
   const generated = render(ast);

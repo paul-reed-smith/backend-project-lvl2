@@ -1,14 +1,10 @@
 import ini from 'ini';
 import yaml from 'js-yaml';
-import path from 'path';
 
 const types = {
-  '.json': (data) => JSON.parse(data),
-  '.ini': (data) => ini.parse(data),
-  '.yaml': (data) => yaml.safeLoad(data),
+  json: JSON.parse,
+  ini: ini.parse,
+  yaml: yaml.safeLoad,
 };
 
-export default (dataPath, data) => {
-  const ext = path.extname(dataPath);
-  return types[ext](data);
-};
+export default (data, type) => types[type](data);
