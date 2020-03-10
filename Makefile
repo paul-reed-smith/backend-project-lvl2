@@ -19,4 +19,7 @@ lint:
 publish:
 	npm publish
 
+coverage:
+    npm test --coverage
+
 .PHONY: test
