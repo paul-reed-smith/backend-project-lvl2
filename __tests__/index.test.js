@@ -20,4 +20,4 @@ test.each(['plain', 'json'])('Input format: json, output is: %s', (format) => {
   const generated = gendiff(first, second, format);
 
   expect(expected).toEqual(generated);
-})
+});
