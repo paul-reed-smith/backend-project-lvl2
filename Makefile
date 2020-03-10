@@ -14,7 +14,7 @@ test:
 	npm test
 
 coverage:
-	npx jest --coverage
+	npm test -- --coverage
 
 lint:
 	npx eslint .
