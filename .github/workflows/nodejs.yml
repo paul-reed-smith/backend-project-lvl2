@@ -32,6 +32,9 @@ jobs:
         CI: true
     - name: Publish code coverage
       uses: paambaati/codeclimate-action@v2.4.0
+    - run: |
+        make intstall
+        make test
       env:
         CC_TEST_REPORTER_ID: 8b880bb3a91ea84602701861971fdd434f45d3e293d3fc7726f2ef0a01fdee69s
       with:
