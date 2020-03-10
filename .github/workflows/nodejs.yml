@@ -37,9 +37,6 @@ jobs:
         node: [ '12', '10' ]
     name: test/node ${{ matrix.node }}/${{ matrix.platform }}
     runs-on: ${{ matrix.platform }}
-    steps:
-    - uses: actions/checkout@master
-    - uses: actions/setup-node@master
       with:
         node-version: ${{ matrix.node }}
     - run: npm install -g yarn
@@ -50,9 +47,6 @@ jobs:
     needs: [ test ]
     name: coverage
     runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - uses: actions/setup-node@master
       with:
         node-version: '12'
     - run: npm install -g yarn
