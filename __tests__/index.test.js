@@ -18,3 +18,12 @@ test('plain format', () => {
 
   expect(expected).toEqual(generated);
 });
+
+test('json format', () => {
+  const first = `${__dirname}/__fixtures__/first.ini`;
+  const second = `${__dirname}/__fixtures__/second.ini`;
+  const expected = fs.readFileSync(`${__dirname}/__fixtures__/expectedJSON.txt`, 'utf-8');
+  const generated = gendiff(first, second, 'json');
+
+  expect(expected).toEqual(generated);
+});
