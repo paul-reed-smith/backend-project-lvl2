@@ -13,13 +13,13 @@ build:
 test:
 	npm test
 
+coverage:
+	npx jest --coverage
+
 lint:
 	npx eslint .
 
 publish:
 	npm publish
-
-coverage:
-    npm test --coverage
 
 .PHONY: test
