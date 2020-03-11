@@ -9,6 +9,7 @@ program
   .arguments('<<firstConfig> <secondConfig>')
   .option('-V, --version        output the version number')
   .option('-f, --format [type]  Output format')
+  .option('-h, --help           output usage information')
   .action((firstConfig, secondConfig) => {
     console.log(func(firstConfig, secondConfig, program.format));
   })
