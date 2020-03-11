@@ -57,6 +57,5 @@ export default (dataPath1, dataPath2, format = 'pretty') => {
   const ast = buildAST(data1, data2);
   const render = getRender(format);
 
-  const generated = render(ast);
-  return generated;
+  return render(ast);
 };
