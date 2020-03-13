@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import program from 'commander';
-import func from '../index';
+import calculateTheDifferences from '../index';
 import { version } from '../../package.json';
 
 program
@@ -11,6 +11,6 @@ program
   .option('-f, --format [type]  Output format')
   .option('-h, --help           output usage information')
   .action((firstConfig, secondConfig) => {
-    console.log(func(firstConfig, secondConfig, program.format));
+    console.log(calculateTheDifferences(firstConfig, secondConfig, program.format));
   })
   .parse(process.argv);

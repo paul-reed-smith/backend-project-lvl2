@@ -4,7 +4,7 @@
   "description": "calculates differences between files",
   "main": "dist/src/index.js",
   "bin": {
-    "gendiff": "dist/bin/gendiff.js"
+    "gendiff": "dist/bin/calcdiff.js"
   },
   "author": "Paul-Reed-Smith",
   "license": "ISC",
