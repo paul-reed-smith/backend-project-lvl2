@@ -2,7 +2,6 @@ import _ from 'lodash';
 
 const fourSpaces = '    ';
 
-
 const calculateTheindent = (indent) => indent + fourSpaces;
 
 const closingCurlyBracketIndentCalculator = (indent) => {
@@ -18,10 +17,8 @@ const checkTheValue = (value, indent) => {
     const mapped = keys.map((el) => `${newIndent}  ${el}: ${value[el]}`);
     const stringed = mapped.join('\n');
 
-
     return `{\n${stringed}\n${closingCurlyBracketIndentCalculator(newIndent)}}`;
   }
-
 
   return value;
 };
