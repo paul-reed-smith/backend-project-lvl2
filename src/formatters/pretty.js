@@ -1,15 +1,15 @@
 import _ from 'lodash';
 
-const indentCalc = (nestingLevel) => '  '.repeat(nestingLevel);
+const calculateTheMargin = (nestingLevel) => '  '.repeat(nestingLevel);
 
-const valueChecker = (value, nestingLevel) => {
+const checkTheValue = (value, nestingLevel) => {
   if (_.isObject(value)) {
     const keys = Object.keys(value);
     const newNestingLevel = nestingLevel + 3;
-    const mapped = keys.map((el) => `${indentCalc(newNestingLevel)}${el}: ${value[el]}`);
+    const mapped = keys.map((el) => `${calculateTheMargin(newNestingLevel)}${el}: ${value[el]}`);
     const stringed = mapped.join('\n');
 
-    return `{\n${stringed}\n${indentCalc(nestingLevel + 1)}}`;
+    return `{\n${stringed}\n${calculateTheMargin(nestingLevel + 1)}}`;
   }
 
 
@@ -17,10 +17,10 @@ const valueChecker = (value, nestingLevel) => {
 };
 
 const stringify = (nestingLevel, sign, key, value) => {
-  const indent = indentCalc(nestingLevel);
-  const checkedValue = valueChecker(value, nestingLevel);
+  const margin = calculateTheMargin(nestingLevel);
+  const checkedValue = checkTheValue(value, nestingLevel);
 
-  return `${indent}${sign} ${key}: ${checkedValue}\n`;
+  return `${margin}${sign} ${key}: ${checkedValue}\n`;
 };
 
 const renderTypes = {
@@ -33,7 +33,7 @@ const renderTypes = {
   },
   deleted: ({ key, value }, nestingLevel) => stringify(nestingLevel, '-', key, value),
   unchanged: ({ key, value }, nestingLevel) => stringify(nestingLevel, ' ', key, value),
-  nested: ({ key, children }, nestingLevel, func) => `${indentCalc(nestingLevel)}${key}: ${func(children, nestingLevel)}\n`,
+  nested: ({ key, children }, nestingLevel, func) => `${calculateTheMargin(nestingLevel)}${key}: ${func(children, nestingLevel)}\n`,
 
 };
 
@@ -52,7 +52,7 @@ const finder = (el, nestingLevel, func) => {
 const render = (ast, nestingLevel) => {
   const rendered = ast.map((el) => finder(el, nestingLevel, render));
 
-  return `{\n${rendered.join('')}${indentCalc(nestingLevel - 1)}}`;
+  return `{\n${rendered.join('')}${calculateTheMargin(nestingLevel - 1)}}`;
 };
 
 const startingNestingLevel = 1;
