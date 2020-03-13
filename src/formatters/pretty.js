@@ -14,12 +14,12 @@ const closingCurlyBracketIndentCalculator = (indent) => {
 const checkTheValue = (value, indent) => {
   if (_.isObject(value)) {
     const keys = Object.keys(value);
-    const nextindent = calculateTheindent(indent);
-    const mapped = keys.map((el) => `${nextindent}  ${el}: ${value[el]}`);
+    const newIndent = calculateTheindent(indent);
+    const mapped = keys.map((el) => `${newIndent}  ${el}: ${value[el]}`);
     const stringed = mapped.join('\n');
 
 
-    return `{\n${stringed}\n${closingCurlyBracketIndentCalculator(nextindent)}}`;
+    return `{\n${stringed}\n${closingCurlyBracketIndentCalculator(newIndent)}}`;
   }
 
 
@@ -43,9 +43,9 @@ const renderTypes = {
   deleted: ({ key, value }, indent) => stringify(indent, '-', key, value),
   unchanged: ({ key, value }, indent) => stringify(indent, ' ', key, value),
   nested: ({ key, children }, indent, func) => {
-    const newindent = calculateTheindent(indent);
+    const newIndent = calculateTheindent(indent);
 
-    return `${indent}  ${key}: ${func(children, newindent)}\n`;
+    return `${indent}  ${key}: ${func(children, newIndent)}\n`;
   },
 
 };
