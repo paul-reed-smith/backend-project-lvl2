@@ -1,60 +1,68 @@
 import _ from 'lodash';
 
-const calculateTheMargin = (nestingLevel) => '  '.repeat(nestingLevel);
+const fourSpaces = '    ';
 
-const checkTheValue = (value, nestingLevel) => {
+
+const calculateTheindent = (indent) => indent + fourSpaces;
+
+const closingCurlyBracketIndentCalculator = (indent) => {
+  const lengthMinusTwo = indent.length - 2;
+
+  return indent.substring(0, lengthMinusTwo);
+};
+
+const checkTheValue = (value, indent) => {
   if (_.isObject(value)) {
     const keys = Object.keys(value);
-    const newNestingLevel = nestingLevel + 3;
-    const mapped = keys.map((el) => `${calculateTheMargin(newNestingLevel)}${el}: ${value[el]}`);
+    const nextindent = calculateTheindent(indent);
+    const mapped = keys.map((el) => `${nextindent}  ${el}: ${value[el]}`);
     const stringed = mapped.join('\n');
 
-    return `{\n${stringed}\n${calculateTheMargin(nestingLevel + 1)}}`;
+
+    return `{\n${stringed}\n${closingCurlyBracketIndentCalculator(nextindent)}}`;
   }
 
 
   return value;
 };
 
-const stringify = (nestingLevel, sign, key, value) => {
-  const margin = calculateTheMargin(nestingLevel);
-  const checkedValue = checkTheValue(value, nestingLevel);
+const stringify = (indent, sign, key, value) => {
+  const checkedValue = checkTheValue(value, indent);
 
-  return `${margin}${sign} ${key}: ${checkedValue}\n`;
+  return `${indent}${sign} ${key}: ${checkedValue}\n`;
 };
 
 const renderTypes = {
-  added: ({ key, value }, nestingLevel) => stringify(nestingLevel, '+', key, value),
-  changed: ({ key, value1, value2 }, nestingLevel) => {
-    const added = stringify(nestingLevel, '+', key, value2);
-    const deleted = stringify(nestingLevel, '-', key, value1);
+  added: ({ key, value }, indent) => stringify(indent, '+', key, value),
+  changed: ({ key, value1, value2 }, indent) => {
+    const added = stringify(indent, '+', key, value2);
+    const deleted = stringify(indent, '-', key, value1);
 
-    return `${added}${deleted}`;
+    return `${deleted}${added}`;
   },
-  deleted: ({ key, value }, nestingLevel) => stringify(nestingLevel, '-', key, value),
-  unchanged: ({ key, value }, nestingLevel) => stringify(nestingLevel, ' ', key, value),
-  nested: ({ key, children }, nestingLevel, func) => `${calculateTheMargin(nestingLevel)}${key}: ${func(children, nestingLevel)}\n`,
+  deleted: ({ key, value }, indent) => stringify(indent, '-', key, value),
+  unchanged: ({ key, value }, indent) => stringify(indent, ' ', key, value),
+  nested: ({ key, children }, indent, func) => {
+    const newindent = calculateTheindent(indent);
+
+    return `${indent}  ${key}: ${func(children, newindent)}\n`;
+  },
 
 };
 
 
-const finder = (el, nestingLevel, func) => {
+const finder = (el, indent, func) => {
   const { type } = el;
-  if (_.isObject(el)) {
-    const newNestingLevel = nestingLevel + 1;
 
-    return renderTypes[type](el, newNestingLevel, func);
-  }
-
-  return renderTypes[type](el, nestingLevel);
+  return renderTypes[type](el, indent, func);
 };
 
-const render = (ast, nestingLevel) => {
-  const rendered = ast.map((el) => finder(el, nestingLevel, render));
+const render = (ast, indent) => {
+  const rendered = ast.map((el) => finder(el, indent, render));
 
-  return `{\n${rendered.join('')}${calculateTheMargin(nestingLevel - 1)}}`;
+  return `{\n${rendered.join('')}${closingCurlyBracketIndentCalculator(indent)}}`;
 };
 
-const startingNestingLevel = 1;
+const baseindent = '  ';
 
-export default (ast) => render(ast, startingNestingLevel);
+export default (ast) => render(ast, baseindent);
