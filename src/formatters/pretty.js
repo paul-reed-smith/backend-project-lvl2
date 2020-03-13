@@ -4,7 +4,7 @@ const fourSpaces = '    ';
 
 const calculateTheindent = (indent) => indent + fourSpaces;
 
-const closingCurlyBracketIndentCalculator = (indent) => {
+const calculateIndentForClosingCurlyBrace = (indent) => {
   const lengthMinusTwo = indent.length - 2;
 
   return indent.substring(0, lengthMinusTwo);
@@ -17,7 +17,7 @@ const checkTheValue = (value, indent) => {
     const mapped = keys.map((el) => `${newIndent}  ${el}: ${value[el]}`);
     const stringed = mapped.join('\n');
 
-    return `{\n${stringed}\n${closingCurlyBracketIndentCalculator(newIndent)}}`;
+    return `{\n${stringed}\n${calculateIndentForClosingCurlyBrace(newIndent)}}`;
   }
 
   return value;
@@ -57,7 +57,7 @@ const finder = (el, indent, func) => {
 const render = (ast, indent) => {
   const rendered = ast.map((el) => finder(el, indent, render));
 
-  return `{\n${rendered.join('')}${closingCurlyBracketIndentCalculator(indent)}}`;
+  return `{\n${rendered.join('')}${calculateIndentForClosingCurlyBrace(indent)}}`;
 };
 
 const baseindent = '  ';
