@@ -11,16 +11,16 @@ const calculateIndentForClosingCurlyBrace = (indent) => {
 };
 
 const checkTheValue = (value, indent) => {
-  if (_.isObject(value)) {
-    const keys = Object.keys(value);
-    const newIndent = calculateTheindent(indent);
-    const mapped = keys.map((el) => `${newIndent}  ${el}: ${value[el]}`);
-    const stringed = mapped.join('\n');
-
-    return `{\n${stringed}\n${calculateIndentForClosingCurlyBrace(newIndent)}}`;
+  if (!_.isObject(value)) {
+    return value;
   }
 
-  return value;
+  const keys = Object.keys(value);
+  const newIndent = calculateTheindent(indent);
+  const mapped = keys.map((el) => `${newIndent}  ${el}: ${value[el]}`);
+  const stringed = mapped.join('\n');
+
+  return `{\n${stringed}\n${calculateIndentForClosingCurlyBrace(newIndent)}}`;
 };
 
 const stringify = (indent, sign, key, value) => {
