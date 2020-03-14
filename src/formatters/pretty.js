@@ -48,14 +48,14 @@ const renderTypes = {
 };
 
 
-const finder = (el, indent, func) => {
+const findNode = (el, indent, func) => {
   const { type } = el;
 
   return renderTypes[type](el, indent, func);
 };
 
 const render = (ast, indent) => {
-  const rendered = ast.map((el) => finder(el, indent, render));
+  const rendered = ast.map((el) => findNode(el, indent, render));
 
   return `{\n${rendered.join('')}${calculateIndentForClosingCurlyBrace(indent)}}`;
 };
