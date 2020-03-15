@@ -44,12 +44,19 @@ const buildAST = (data1, data2) => {
   return unKeys.map((key) => buildNode(data1, data2, key, buildAST));
 };
 
+const getFormatFromExtension = (dataPath) => {
+  const extension = path.extname(dataPath);
+  const dataFormat = extension.substr(1);
+
+  return dataFormat;
+};
+
 export default (dataPath1, dataPath2, format = 'pretty') => {
   const readedData1 = fs.readFileSync(dataPath1, 'utf-8');
   const readedData2 = fs.readFileSync(dataPath2, 'utf-8');
 
-  const format1 = path.extname(dataPath1).substr(1);
-  const format2 = path.extname(dataPath2).substr(1);
+  const format1 = getFormatFromExtension(dataPath1);
+  const format2 = getFormatFromExtension(dataPath2);
 
   const data1 = parse(readedData1, format1);
   const data2 = parse(readedData2, format2);
