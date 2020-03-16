@@ -13,7 +13,7 @@ build:
 test:
 	npm test
 
-coverage:
+test-coverage:
 	npm test -- --coverage
 
 lint:
