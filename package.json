@@ -1,6 +1,6 @@
 {
   "name": "paul-reed-smith-hexlet-two",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "calculates differences between files",
   "main": "dist/src/index.js",
   "bin": {
