@@ -22,14 +22,28 @@ This will install package globaly
 
 ```gendiff <first file> <second file> --format <format> (pretty for default)```
 
-[![asciicast](https://asciinema.org/a/myNHEX9spFdvG6s5FkVy52BI2.svg)](https://asciinema.org/a/myNHEX9spFdvG6s5FkVy52BI2)
+## examples of use
 
-[![asciicast](https://asciinema.org/a/L7y4tWJAcabi2G3xmUGgBwh3g.svg)](https://asciinema.org/a/L7y4tWJAcabi2G3xmUGgBwh3g)
+### Plain json - output 'pretty'
 
-[![asciicast](https://asciinema.org/a/Qcf8hYiDsvtIbwU5F0FQiFRwG.svg)](https://asciinema.org/a/Qcf8hYiDsvtIbwU5F0FQiFRwG)
+[![asciicast](https://asciinema.org/a/GT3ymQ4NJ1ADNsYN4cQg0YsQC.svg)](https://asciinema.org/a/GT3ymQ4NJ1ADNsYN4cQg0YsQC)
 
-[![asciicast](https://asciinema.org/a/M3XIv99G2Np4sISrDSNEIE0vu.svg)](https://asciinema.org/a/M3XIv99G2Np4sISrDSNEIE0vu)
+### Plain yaml - output 'pretty'
 
-[![asciicast](https://asciinema.org/a/dqg0YGHjyCwMl6l4evL9sFUtX.svg)](https://asciinema.org/a/dqg0YGHjyCwMl6l4evL9sFUtX)
+[![asciicast](https://asciinema.org/a/hXQXgLyMx65smHNfFn4ZuIEl4.svg)](https://asciinema.org/a/hXQXgLyMx65smHNfFn4ZuIEl4)
 
-[![asciicast](https://asciinema.org/a/QRYqq8zBOZvgwKbdmJw81eRKZ.svg)](https://asciinema.org/a/QRYqq8zBOZvgwKbdmJw81eRKZ)
+### Plain ini - output 'pretty'
+
+[![asciicast](https://asciinema.org/a/dvaaIlnTIIthlytjBSMl8Vf1d.svg)](https://asciinema.org/a/dvaaIlnTIIthlytjBSMl8Vf1d)
+
+### Nested json - output 'pretty'
+
+[![asciicast](https://asciinema.org/a/xyt8xPmSZ9U7sxwU4UkoaeeqY.svg)](https://asciinema.org/a/xyt8xPmSZ9U7sxwU4UkoaeeqY)
+
+### Nested ini - output 'plain'
+
+[![asciicast](https://asciinema.org/a/jXSNzJKKFHzM6AJrRuvp6w2Vs.svg)](https://asciinema.org/a/jXSNzJKKFHzM6AJrRuvp6w2Vs)
+
+### Nested yaml - output 'json'
+
+[![asciicast](https://asciinema.org/a/YaBS4UTXl4slI0PN9R1nkZKur.svg)](https://asciinema.org/a/YaBS4UTXl4slI0PN9R1nkZKur)
