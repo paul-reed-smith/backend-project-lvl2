@@ -20,7 +20,7 @@ This will install package globaly
 
 ## Usage
 
-```calcdiff <first file> <second file> --format <format> (pretty for default)```
+```gendiff <first file> <second file> --format <format> (pretty for default)```
 
 [![asciicast](https://asciinema.org/a/myNHEX9spFdvG6s5FkVy52BI2.svg)](https://asciinema.org/a/myNHEX9spFdvG6s5FkVy52BI2)
 
