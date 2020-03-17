@@ -7,7 +7,6 @@ program
   .version(version)
   .description('Compares two configuration files and shows a difference')
   .arguments('<firstConfig> <secondConfig>')
-  .option('-V, --version', 'Output the version number')
   .option('-f, --format [type]', 'Output format')
   .action((firstConfig, secondConfig) => {
     console.log(calculateTheDifferences(firstConfig, secondConfig, program.format));
