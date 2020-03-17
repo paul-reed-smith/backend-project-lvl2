@@ -1,15 +1,16 @@
-## differences calculator
+# differences calculator
+
 ![Node.js CI](https://github.com/paul-reed-smith/backend-project-lvl2/workflows/Node.js%20CI/badge.svg)
 [![Maintainability](https://api.codeclimate.com/v1/badges/5be4a664edc06ca02a0d/maintainability)](https://codeclimate.com/github/paul-reed-smith/backend-project-lvl2/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/5be4a664edc06ca02a0d/test_coverage)](https://codeclimate.com/github/paul-reed-smith/backend-project-lvl2/test_coverage)
 
-#### Discription
+## Discription
 
-This utility shows the difference between two configuration files. 
+This utility shows the difference between two configuration files.
 Supported file formats: ini, yaml and json.
 The output can be in the following formats: plain, pretty and json
 
-#### Instalation
+## Instalation
 
 Before installing, make sure you have [npm](https://www.npmjs.com/get-npm) and [node.js](https://nodejs.org/en/) installed.
 
@@ -17,9 +18,9 @@ Before installing, make sure you have [npm](https://www.npmjs.com/get-npm) and [
 
 This will install package globaly
 
-#### Usage 
+## Usage
 
-```gendiff <first file> <second file> --format <format> (pretty for default)```
+```calcdiff <first file> <second file> --format <format> (pretty for default)```
 
 [![asciicast](https://asciinema.org/a/myNHEX9spFdvG6s5FkVy52BI2.svg)](https://asciinema.org/a/myNHEX9spFdvG6s5FkVy52BI2)
 
