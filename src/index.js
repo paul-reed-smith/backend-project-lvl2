@@ -51,9 +51,11 @@ const getFormatFromExtension = (dataPath) => {
   return dataFormat;
 };
 
+const readData = (dataPath) => fs.readFileSync(dataPath, 'utf-8');
+
 export default (dataPath1, dataPath2, format = 'pretty') => {
-  const readedData1 = fs.readFileSync(dataPath1, 'utf-8');
-  const readedData2 = fs.readFileSync(dataPath2, 'utf-8');
+  const readedData1 = readData(dataPath1);
+  const readedData2 = readData(dataPath2);
 
   const format1 = getFormatFromExtension(dataPath1);
   const format2 = getFormatFromExtension(dataPath2);
