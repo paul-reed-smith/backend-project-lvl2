@@ -22,7 +22,7 @@ This will install package globaly
 
 ```gendiff <first file> <second file> --format <format> (pretty for default)```
 
-## examples of use
+## Examples of use
 
 ### Plain json - output 'pretty'
 
