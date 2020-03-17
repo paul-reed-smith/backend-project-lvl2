@@ -1,10 +1,10 @@
 {
   "name": "paul-reed-smith-hexlet-two",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "calculates differences between files",
   "main": "dist/src/index.js",
   "bin": {
-    "gendiff": "dist/bin/calcdiff.js"
+    "calcdiff": "dist/bin/calcdiff.js"
   },
   "author": "Paul-Reed-Smith",
   "license": "ISC",
