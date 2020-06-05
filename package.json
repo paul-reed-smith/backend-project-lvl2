@@ -1,6 +1,6 @@
 {
   "name": "paul-reed-smith-hexlet-twomp",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "calculates differences between files",
   "main": "dist/src/index.js",
   "bin": {
