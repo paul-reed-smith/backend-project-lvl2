@@ -1,5 +1,5 @@
 {
-  "name": "paul-reed-smith-hexlet-twomp",
+  "name": "paul-reed-smith-hexlet-two",
   "version": "1.0.7",
   "description": "calculates differences between files",
   "main": "dist/src/index.js",
