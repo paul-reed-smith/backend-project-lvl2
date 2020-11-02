@@ -47,7 +47,6 @@ const renderTypes = {
 
 };
 
-
 const findNode = (el, indent, func) => {
   const { type } = el;
 
