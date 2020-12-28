@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 const fourSpaces = '    ';
 
-const calculateTheindent = (indent) => indent + fourSpaces;
+const calculateTheIndent = (indent) => indent + fourSpaces;
 
 const calculateIndentForClosingCurlyBrace = (indent) => {
   const lengthMinusTwo = indent.length - 2;
@@ -16,7 +16,7 @@ const checkTheValue = (value, indent) => {
   }
 
   const keys = Object.keys(value);
-  const newIndent = calculateTheindent(indent);
+  const newIndent = calculateTheIndent(indent);
   const mapped = keys.map((el) => `${newIndent}  ${el}: ${value[el]}`);
   const stringed = mapped.join('\n');
 
@@ -40,7 +40,7 @@ const renderTypes = {
   deleted: ({ key, value }, indent) => stringify(indent, '-', key, value),
   unchanged: ({ key, value }, indent) => stringify(indent, ' ', key, value),
   nested: ({ key, children }, indent, func) => {
-    const newIndent = calculateTheindent(indent);
+    const newIndent = calculateTheIndent(indent);
 
     return `${indent}  ${key}: ${func(children, newIndent)}\n`;
   },
@@ -59,6 +59,6 @@ const render = (ast, indent) => {
   return `{\n${rendered.join('')}${calculateIndentForClosingCurlyBrace(indent)}}`;
 };
 
-const baseindent = '  ';
+const baseIndent = '  ';
 
-export default (ast) => render(ast, baseindent);
+export default (ast) => render(ast, baseIndent);
